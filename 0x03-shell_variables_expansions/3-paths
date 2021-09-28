@@ -1,0 +1,2 @@
+#!/bin/bash
+ls -l PATH | grep -c ^dls -l .vim | grep -c ^d
