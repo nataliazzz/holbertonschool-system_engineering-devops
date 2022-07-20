@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# run nginx 
+
+# stop apache
+pkill apache2
+
+# changed to port 8080
+if grep -q "listen 80" /etc/nginx/sites-available/default ; then
+    sed -i "s/listen 80/listen 8080/" /etc/nginx/sites-available/default
+fi
+
+# changed to port 8080
+if grep -q "listen \[::\]:80" /etc/nginx/sites-available/default ; then
+    sed -i "s/listen \[::\]:80/listen \[::\]:8080/" /etc/nginx/sites-available/default
+fi
+
+# settings are updates
+chown nginx:nginx /etc/nginx/nginx.conf
+
+# file permissions
+chmod 0644 /etc/nginx/nginx.conf
+
+# nginx service starts
+su nginx -c "service nginx start"
