@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# run nginx
+pkill apache2
+sed -i "s/listen 80/listen 8080/" /etc/nginx/sites-available/default
+sed -i "s/listen \[::\]:80/listen \[::\]:8080/" /etc/nginx/sites-available/default
+chmod 0644 /etc/nginx/nginx.conf
+su nginx -c "service nginx start"
